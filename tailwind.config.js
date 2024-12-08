@@ -8,9 +8,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        backgroundHeader: "var(--background-header)",
+        colorText: "var(--color-text)",
+        backgroundButton: "var(--background-button)",
+        colorLink: "var(--color-link)",
+        backgroundMain: "var(--background-main)",
       },
+      height: { 
+        'mainHeight': 'calc(100vh - 80px)',
+      }
     },
   },
   plugins: [],
