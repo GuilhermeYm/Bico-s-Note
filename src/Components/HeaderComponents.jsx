@@ -1,3 +1,5 @@
+import LoginComponents from "./LoginComponents";
+
 export default function HeaderComponents() {
   return (
     <>
@@ -6,8 +8,9 @@ export default function HeaderComponents() {
         <ul className="flex gap-4 mr-3 items-center">
           <li className="transition-colors duration-300 ease-linear hover:border hover:border-backgroundButton hover:bg-backgroundButton py-2 px-4 rounded-md">
             Criar nota
-          </li>
-          <li>Login</li>
+          </li> 
+          {/*componente que eu criei separadamente para fazer a funcionalidade de verificar se o cara está logado ou não, entre outras coisas */}
+          <LoginComponents />
           <li>Contato</li>
         </ul>
       </header>

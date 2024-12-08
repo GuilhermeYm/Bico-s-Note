@@ -3,13 +3,7 @@
 import useLocal from "@/Hook/useLocal";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Button } from "@shadcn/ui";
+import { CiSearch } from "react-icons/ci";
 
 export default function MainComponents() {
   const [showMessage, setShowMessage] = useState(false);
@@ -31,7 +25,7 @@ export default function MainComponents() {
       <main className="bg-backgroundMain flex-col gap-48 w-full h-mainHeight py-3">
         {/*Este aside será o campo de pesquisa */}
         <aside className="flex gap-2 bg-backgroundAside w-72 items-center py-3 px-4 mx-auto rounded-md">
-          ícone
+          <CiSearch />
           <div className="text-colorTextAside text-sm">
             Digite para procurar alguma nota
           </div>
@@ -51,24 +45,6 @@ export default function MainComponents() {
           )}
           <section></section>
         </article>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button className="px-4 py-2 bg-blue-500 text-white rounded-md">
-              Ações
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-white rounded-md shadow-md">
-            <DropdownMenuItem onSelect={() => alert("Primeira ação")}>
-              Primeira ação
-            </DropdownMenuItem>
-            <DropdownMenuItem onSelect={() => alert("Segunda ação")}>
-              Segunda ação
-            </DropdownMenuItem>
-            <DropdownMenuItem onSelect={() => alert("Terceira ação")}>
-              Terceira ação
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
       </main>
     </>
   );
