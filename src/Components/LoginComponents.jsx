@@ -28,7 +28,7 @@ export default function LoginComponents() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="transition-colors duration-300 ease-linear hover:border hover:border-backgroundButton hover:bg-backgroundButton py-2 px-4 rounded-md">
+        <Button className="transition-colors bg-transparent duration-300 ease-linear hover:border hover:border-backgroundButton hover:bg-backgroundButton py-2 px-4 rounded-md">
           {isLogin ? "Perfil" : "Login"}
         </Button>
       </DropdownMenuTrigger>
@@ -46,7 +46,7 @@ export default function LoginComponents() {
           </DropdownMenuItem>
           <DropdownMenuItem className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 hover:text-red-600 cursor-pointer">
             <LogOut size={16} />
-            <Button onSelect={() => alert("sair")}>Sair</Button>
+            <Button onClick={() => console.log('Sair')}>Sair</Button>
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>

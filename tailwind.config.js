@@ -62,13 +62,17 @@ module.exports = {
   			articleHeight: 'calc(100vh - 137)',
   		},
 		width: {
-			formWidth: '500px'
+			formWidth: '500px',
+			noteExpo: '400px'
 		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+		fontSize: { 
+			fontMini: '10px'
+		}
   	}
   },
   plugins: [require("tailwindcss-animate")],
