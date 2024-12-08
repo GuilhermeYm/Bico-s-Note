@@ -59,8 +59,11 @@ module.exports = {
   		},
   		height: {
   			mainHeight: 'calc(100vh - 80px)',
-  			articleHeight: 'calc(100vh - 137)'
+  			articleHeight: 'calc(100vh - 137)',
   		},
+		width: {
+			formWidth: '500px'
+		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

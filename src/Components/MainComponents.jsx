@@ -30,7 +30,7 @@ export default function MainComponents() {
             Digite para procurar alguma nota
           </div>
         </aside>
-        <article className="h-articleHeight w-full">
+        <article className="h-articleHeight w-full text-colorText">
           {showMessage ? (
             <section className="mx-auto text-colorText flex items-center justify-center">
               <p>
@@ -43,7 +43,11 @@ export default function MainComponents() {
               <p>Com notas</p>
             </section>
           )}
-          <section></section>
+          {/*Template da exposição das notas */}
+          <section className="">
+            <div>dsadsada</div>
+            <div>dasdas</div>
+          </section>
         </article>
       </main>
     </>
