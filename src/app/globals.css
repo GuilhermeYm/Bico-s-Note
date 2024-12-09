@@ -8,9 +8,11 @@
   --background-button: #635ef2;
   --background-main: #403f3c;
   --background-aside: #262521;
+  --background-forms: #404040;
+  --background-secondaryButton: ;
 
   /*Color */
-  --color-link: #252273;
+  --color-link: #2563EB;
   --color-text: #f2f2f2;
   --colorText-aside: #595856;
 }

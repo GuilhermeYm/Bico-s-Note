@@ -16,6 +16,7 @@ module.exports = {
   			backgroundMain: 'var(--background-main)',
   			colorTextAside: 'var(--colorText-aside)',
   			backgroundAside: 'var(--background-aside)',
+			backgroundForm: 'var(--background-forms)',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

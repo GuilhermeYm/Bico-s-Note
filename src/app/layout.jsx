@@ -1,4 +1,5 @@
 import "./globals.css";
+import { Toaster } from "@/Components/ui/toaster";
 
 export const metadata = {
   title: "Ainda não sei",
@@ -8,7 +9,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
-      <body className={` antialiased`}>{children}</body>
+      <body className={` antialiased`}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }

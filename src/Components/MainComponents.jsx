@@ -48,7 +48,7 @@ export default function MainComponents() {
             </section>
           )}
           {/*Template da exposição das notas */}
-          <section className="bg-backgroundAside w-noteExpo rounded-md px-3 py-2 mx-auto my-3 gap-2">
+          <section className="bg-backgroundAside w-noteExpo rounded-md px-3 py-2 mx-auto my-3 gap-2 cursor-pointer">
             <div className="mb-1">
               <h2 className="font-bold text-base">Título da Nota é foda para caralho</h2>
             </div>
