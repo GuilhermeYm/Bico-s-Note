@@ -25,5 +25,6 @@ export default function useLocal() {
   };
   return {
     verifyNotesAtLocalStorage,
+    saveNewNoteAtLocalStorage,
   };
 }

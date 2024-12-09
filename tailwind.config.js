@@ -16,7 +16,7 @@ module.exports = {
   			backgroundMain: 'var(--background-main)',
   			colorTextAside: 'var(--colorText-aside)',
   			backgroundAside: 'var(--background-aside)',
-			backgroundForm: 'var(--background-forms)',
+  			backgroundForm: 'var(--background-forms)',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -60,20 +60,42 @@ module.exports = {
   		},
   		height: {
   			mainHeight: 'calc(100vh - 80px)',
-  			articleHeight: 'calc(100vh - 137)',
+  			articleHeight: 'calc(100vh - 137)'
   		},
-		width: {
-			formWidth: '500px',
-			noteExpo: '400px'
-		},
+  		width: {
+  			formWidth: '500px',
+  			noteExpo: '400px'
+  		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
-		fontSize: { 
-			fontMini: '10px'
-		}
+  		fontSize: {
+  			fontMini: '10px'
+  		},
+  		keyframes: {
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		},
+  		animation: {
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
+  		}
   	}
   },
   plugins: [require("tailwindcss-animate")],
