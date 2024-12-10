@@ -1,5 +1,5 @@
 import HeaderComponents from "@/Components/HeaderComponents";
-import LoginComponents from "@/Components/LoginAndRegister/LoginComponents";
+import LoginComponents from "@/Components/LoginAndRegister/LoginPageComponents";
 
 export default function Page() {
   return (

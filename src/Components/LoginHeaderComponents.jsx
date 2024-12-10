@@ -10,7 +10,7 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { LogOut, Settings } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 import useLogin from "@/Hook/useLogin";
 import Link from "next/link";

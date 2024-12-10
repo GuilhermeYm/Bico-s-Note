@@ -1,10 +1,10 @@
 "use client";
 
 import { useToast } from "@/hooks/use-toast";
-import { Button } from "@/components/ui/button";
+import { Button } from "../ui/button";
 import { ToastAction } from "@/components/ui/toast";
-import { Label } from "@/Components/ui/label";
-import { Input } from "@/Components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
