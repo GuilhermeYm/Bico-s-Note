@@ -18,6 +18,7 @@ const createRegisterOfUserSchema = z
       .string()
       .min(6, "A senha precisa no mínimo 6 caracteres")
       .regex(caracteresEspeciaisRegex, "A senha precisa polo menos ter um dos caraceteres especiais, como @!#...."),
+    email: z.string().email(),
     confirmPassword: z
       .string()
       .min(6, "A confirmação da senha precisa no mínimo 6 caracteres"),
@@ -40,12 +41,12 @@ export default function RegisterComponents() {
 
   const handleRegisterNewUser = (data) => {
     console.log(formState.errors);
-    console.log(data);
-    toast({
+    console.log(data);toast({
       title: "Bem-vindo",
       description: "Estamos muito felizes de ter você aqui 😊",
       action: <ToastAction altText="Fechar mensagem">Fechar</ToastAction>,
     });
+    
   };
 
   return (

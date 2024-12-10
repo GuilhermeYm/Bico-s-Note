@@ -6,11 +6,14 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "./ui/button";
+import useLocal from "@/Hook/useLocal";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/hooks/use-toast";
 
 const newNoteSchema = z.object({
   title: z
     .string()
-    .min(1, "O título da nota precisa ter polo menos um caracter")
+    .min(1, "O título da nota precisa ter polo menos 1 caracter")
     .max(34, "O título só pode ter 34 caracteres"),
   content: z
     .string()
@@ -31,6 +34,9 @@ const newNoteSchema = z.object({
 });
 
 export default function CreateNoteComponents() {
+  const { saveNewNoteAtLocalStorage } = useLocal();
+  const { toast } = useToast();
+
   const {
     register,
     handleSubmit,
@@ -38,7 +44,7 @@ export default function CreateNoteComponents() {
     control,
   } = useForm({
     resolver: zodResolver(newNoteSchema),
-    mode: "onChange",
+    mode: "onBlur",
   });
 
   // Declarando o filedArray
@@ -50,6 +56,20 @@ export default function CreateNoteComponents() {
   // HandleSubmit
   const handleCreateNote = (data) => {
     console.log(data);
+    const savedNote = saveNewNoteAtLocalStorage(data);
+    if (savedNote) {
+      toast({
+        title: "Bem-vindo",
+        description: "Estamos muito felizes de ter você aqui 😊",
+        action: <ToastAction altText="Fechar mensagem">Fechar</ToastAction>,
+      });
+    } else { 
+      toast({
+        title: "Erro",
+        description: "De algum erro, tente novamente ou contate o suporte",
+        action: <ToastAction altText="Fechar mensagem">Fechar</ToastAction>,
+      });
+    }
   };
 
   // Função para adicionar nova tag
@@ -64,7 +84,7 @@ export default function CreateNoteComponents() {
         className="w-formWidth bg-backgroundAside text-colorText flex flex-col justify-end gap-2 py-4 px-6 rounded-lg"
       >
         {/* Divisão para o título da anotação*/}
-        <div>
+        <div className="flex flex-col gap-3 text-base">
           <Label htmlFor="titleNote">Título da nota</Label>
           <Input
             id="titleNote"
@@ -79,7 +99,7 @@ export default function CreateNoteComponents() {
           )}
         </div>
         {/* Divisão para o conteúdo da anotação*/}
-        <div>
+        <div className="flex flex-col gap-3 text-base">
           <Label htmlFor="contentNote">Conteúdo da nota</Label>
           <Input
             id="contentNote"
@@ -94,7 +114,7 @@ export default function CreateNoteComponents() {
           )}
         </div>
         {/*Divisão para descrição*/}
-        <div>
+        <div className="flex flex-col gap-3 text-base">
           <Label htmlFor="descriptionNote">Descrição da nota</Label>
           <Input
             id="descriptionNote"
@@ -109,7 +129,7 @@ export default function CreateNoteComponents() {
           )}
         </div>
         {/* Divisão para as tags da anotação*/}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 text-base">
           <div className="mb-2">
             <Label
               htmlFor="tags"
@@ -128,14 +148,23 @@ export default function CreateNoteComponents() {
                   type="text"
                   id="tags"
                   name="tags"
-                  {...register(`Badge.${index}.title`)}
+                  {...register(`Badge.${index}.nameBadge`)}
                   placeholder="Digite a tag da nota"
                 />
+                {errors.Badge?.[index]?.nameBadge && (
+                  <span className="text-fontMini text-red-600 italic">
+                    {errors.Badge?.[index].message}
+                  </span>
+                )}
               </div>
             );
           })}
         </div>
-        <Button type="submit">Criar nota</Button>
+        {/*Divisão para a inserção de imagens */}
+        <div></div>
+        <Button type="submit" disabled={!isValid || isSubmitting}>
+          Criar nota
+        </Button>
       </form>
     </>
   );
