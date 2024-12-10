@@ -1,5 +1,5 @@
 import Link from "next/link";
-import LoginComponents from "./LoginComponents";
+import LoginComponents from "./LoginHeaderComponents";
 
 export default function HeaderComponents() {
   return (
