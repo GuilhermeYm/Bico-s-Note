@@ -9,7 +9,7 @@ import { Button } from "./ui/button";
 import useLocal from "@/Hook/useLocal";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/hooks/use-toast";
-import { TiDelete } from "react-icons/ti";
+import { FaDeleteLeft } from "react-icons/fa6"
 
 const newNoteSchema = z.object({
   title: z
@@ -23,7 +23,7 @@ const newNoteSchema = z.object({
   description: z
     .string()
     .min(1, "A descrição precisa ter polo menos 1 caracter")
-    .max(74, "A descrição precisa ter polo menos 74 caracteres"),
+    .max(74, "A descrição só pode ter 74 caracteres"),
   Badge: z.array(
     z.object({
       nameBadge: z
@@ -85,13 +85,14 @@ export default function CreateNoteComponents() {
 
   return (
     <>
+      <h2 className="text-lg mb-3 font-bold">Formulário para criar nota</h2>
       <form
         onSubmit={handleSubmit(handleCreateNote)}
-        className="w-formWidth bg-backgroundAside text-colorText flex flex-col justify-end gap-2 py-4 px-6 rounded-lg"
+        className="w-formWidth bg-backgroundAside text-colorText flex flex-col justify-end gap-4 py-4 px-6 rounded-lg"
       >
         {/* Divisão para o título da anotação*/}
         <div className="flex flex-col gap-3 text-base">
-          <Label htmlFor="titleNote">Título da nota</Label>
+          <Label htmlFor="titleNote" className="text-lg">Título da nota</Label>
           <Input
             id="titleNote"
             name="titleNote"
@@ -106,7 +107,7 @@ export default function CreateNoteComponents() {
         </div>
         {/* Divisão para o conteúdo da anotação*/}
         <div className="flex flex-col gap-3 text-base">
-          <Label htmlFor="contentNote">Conteúdo da nota</Label>
+          <Label htmlFor="contentNote" className="text-lg">Conteúdo da nota</Label>
           <Input
             id="contentNote"
             name="contentNote"
@@ -121,7 +122,7 @@ export default function CreateNoteComponents() {
         </div>
         {/*Divisão para descrição*/}
         <div className="flex flex-col gap-3 text-base">
-          <Label htmlFor="descriptionNote">Descrição da nota</Label>
+          <Label htmlFor="descriptionNote" className="text-lg">Descrição da nota</Label>
           <Input
             id="descriptionNote"
             name="descriptionNote"
@@ -139,7 +140,7 @@ export default function CreateNoteComponents() {
           <div className="mb-2">
             <Label
               htmlFor="tags"
-              className="text-end flex justify-between items-center text-sm"
+              className="text-end flex justify-between items-center text-Lg"
             >
               Tags
               <Button onClick={addNewTag} type="button">
@@ -149,8 +150,8 @@ export default function CreateNoteComponents() {
           </div>
           {fields.map((field, index) => {
             return (
-              <div key={field.id}>
-                <div className="flex justify-between">
+              <div key={field.id} className="w-full flex flex-col gap-2">
+                <div className="flex justify-between gap-4">
                   <Input
                     type="text"
                     id="tags"
@@ -158,9 +159,9 @@ export default function CreateNoteComponents() {
                     {...register(`Badge.${index}.nameBadge`)}
                     placeholder="Digite a tag da nota"
                   />
-                  <Button onClick={removeTag(index)}>
-                    <TiDelete />
-                  </Button>
+                  <button onClick={() => removeTag(index)} type="button" className="bg-transparent p-0 m-0">
+                    <FaDeleteLeft className="text-2xl text-red-500  hover:text-red-800 transition-colors duration-300 ease-linear"/>
+                  </button>
                 </div>
                 {errors.Badge?.[index]?.nameBadge && (
                   <span className="text-fontMini text-red-600 italic">
@@ -171,8 +172,6 @@ export default function CreateNoteComponents() {
             );
           })}
         </div>
-        {/*Divisão para a inserção de imagens */}
-        <div></div>
         <Button type="submit" disabled={!isValid || isSubmitting}>
           Criar nota
         </Button>

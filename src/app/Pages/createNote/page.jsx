@@ -8,31 +8,33 @@ import {
 } from "@/components/ui/accordion";
 
 export default function Page() {
-
   return (
     <>
       <HeaderComponents />
       <main className="bg-backgroundMain h-mainHeight w-full flex flex-col justify-center items-center text-colorText">
         <CreateNoteComponents />
         {/*Divisão para perguntas*/}
-        <div>
+        <div className="mt-3">
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
               <AccordionTrigger>O que eu devo por na nota ?</AccordionTrigger>
               <AccordionContent>
                 <ul>
-                  <li>Coloque o conteúdo das anotações das aulas</li>
+                  <li>Você pode por as anotações feitas durante a aula</li>
                   <li>
                     Escreva pontos importantes que você poderá utilizar
                     futuramente
                   </li>
-                  <li>Você também inserir</li>
+                  <li>
+                    Você também pode usar para fazer rápidas anotações, e logo
+                    depois apagar
+                  </li>
                 </ul>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger>
-                Como que o sistema vai formar as <b>descrições</b>?
+                Como que o sistema vai formar as descrições?
               </AccordionTrigger>
               <AccordionContent>
                 O sistema irá cortar o conteúdo em até 76 caracteres, e assim
