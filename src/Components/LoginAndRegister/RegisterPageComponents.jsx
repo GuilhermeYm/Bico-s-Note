@@ -9,23 +9,27 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const caracteresEspeciaisRegex = /[!@#$%^&*(),.?":{}|<>]/;
-
 const createRegisterOfUserSchema = z
   .object({
     name: z.string().min(1, "O nome é obrigatório"),
     password: z
       .string()
       .min(6, "A senha precisa no mínimo 6 caracteres")
-      .regex(caracteresEspeciaisRegex, "A senha precisa polo menos ter um dos caraceteres especiais, como @!#...."),
-    email: z.string().email(),
+      .regex(/[A-Z]/, "A senha deve conter pelo menos uma letra maiúscula.")
+      .regex(/[a-z]/, "A senha deve conter pelo menos uma letra minúscula.")
+      .regex(/[0-9]/, "A senha deve conter pelo menos um número.")
+      .regex(
+        /[@$!%*?&]/,
+        "A senha deve conter pelo menos um caractere especial (@, $, !, %, *, ?, &)."
+      ),
+    email: z.string().email("Por favor, insira um email válido."),
     confirmPassword: z
       .string()
       .min(6, "A confirmação da senha precisa no mínimo 6 caracteres"),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "As senhas não coincidem",
-    path: ["confirmPassword"], // Aponta o erro para o campo correto
+    path: ["confirmPassword"],
   });
 
 export default function RegisterComponents() {
@@ -41,12 +45,12 @@ export default function RegisterComponents() {
 
   const handleRegisterNewUser = (data) => {
     console.log(formState.errors);
-    console.log(data);toast({
+    console.log(data);
+    toast({
       title: "Bem-vindo",
       description: "Estamos muito felizes de ter você aqui 😊",
       action: <ToastAction altText="Fechar mensagem">Fechar</ToastAction>,
     });
-    
   };
 
   return (
@@ -73,6 +77,21 @@ export default function RegisterComponents() {
             <p className="text-fontMini text-red-600 italic">
               {errors.name.message}
             </p>
+          )}
+        </div>
+        <div className="flex flex-col gap-3 justify-end">
+          <Label htmlFor="email">Email:</Label>
+          <Input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Digite o seu email"
+            {...register("email")}
+          />
+          {errors.email && (
+            <span className="text-fontMini text-red-600 italic">
+              {errors.email.message}
+            </span>
           )}
         </div>
         <div className="flex flex-col gap-3 justify-end">

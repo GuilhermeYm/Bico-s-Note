@@ -9,6 +9,7 @@ import { Button } from "./ui/button";
 import useLocal from "@/Hook/useLocal";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/hooks/use-toast";
+import { TiDelete } from "react-icons/ti";
 
 const newNoteSchema = z.object({
   title: z
@@ -63,7 +64,7 @@ export default function CreateNoteComponents() {
         description: "Estamos muito felizes de ter você aqui 😊",
         action: <ToastAction altText="Fechar mensagem">Fechar</ToastAction>,
       });
-    } else { 
+    } else {
       toast({
         title: "Erro",
         description: "De algum erro, tente novamente ou contate o suporte",
@@ -75,6 +76,11 @@ export default function CreateNoteComponents() {
   // Função para adicionar nova tag
   const addNewTag = () => {
     append({ nameBadge: "" });
+  };
+
+  // Função para remover tag
+  const removeTag = (index) => {
+    remove(index);
   };
 
   return (
@@ -144,13 +150,18 @@ export default function CreateNoteComponents() {
           {fields.map((field, index) => {
             return (
               <div key={field.id}>
-                <Input
-                  type="text"
-                  id="tags"
-                  name="tags"
-                  {...register(`Badge.${index}.nameBadge`)}
-                  placeholder="Digite a tag da nota"
-                />
+                <div className="flex justify-between">
+                  <Input
+                    type="text"
+                    id="tags"
+                    name="tags"
+                    {...register(`Badge.${index}.nameBadge`)}
+                    placeholder="Digite a tag da nota"
+                  />
+                  <Button onClick={removeTag(index)}>
+                    <TiDelete />
+                  </Button>
+                </div>
                 {errors.Badge?.[index]?.nameBadge && (
                   <span className="text-fontMini text-red-600 italic">
                     {errors.Badge?.[index].message}

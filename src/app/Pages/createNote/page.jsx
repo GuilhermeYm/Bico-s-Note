@@ -12,7 +12,7 @@ export default function Page() {
   return (
     <>
       <HeaderComponents />
-      <main className="bg-backgroundMain h-mainHeight w-full flex flex-col justify-center items-center">
+      <main className="bg-backgroundMain h-mainHeight w-full flex flex-col justify-center items-center text-colorText">
         <CreateNoteComponents />
         {/*Divisão para perguntas*/}
         <div>

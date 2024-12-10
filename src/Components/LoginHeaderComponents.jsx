@@ -14,7 +14,6 @@ import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 import useLogin from "@/Hook/useLogin";
 import Link from "next/link";
-
 export default function LoginComponents() {
   const [isLogin, setIsLogin] = useState(false);
   const { verifyLogined } = useLogin();
