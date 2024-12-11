@@ -9,7 +9,7 @@ import { Button } from "./ui/button";
 import useLocal from "@/Hook/useLocal";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/hooks/use-toast";
-import { FaDeleteLeft } from "react-icons/fa6"
+import { FaDeleteLeft } from "react-icons/fa6";
 
 const newNoteSchema = z.object({
   title: z
@@ -60,8 +60,9 @@ export default function CreateNoteComponents() {
     const savedNote = saveNewNoteAtLocalStorage(data);
     if (savedNote) {
       toast({
-        title: "Bem-vindo",
-        description: "Estamos muito felizes de ter você aqui 😊",
+        title: "Nota salva com sucesso",
+        description:
+          "A nota foi salva com sucesso, agora você pode ver ela na página incial",
         action: <ToastAction altText="Fechar mensagem">Fechar</ToastAction>,
       });
     } else {
@@ -92,7 +93,9 @@ export default function CreateNoteComponents() {
       >
         {/* Divisão para o título da anotação*/}
         <div className="flex flex-col gap-3 text-base">
-          <Label htmlFor="titleNote" className="text-lg">Título da nota</Label>
+          <Label htmlFor="titleNote" className="text-lg">
+            Título da nota
+          </Label>
           <Input
             id="titleNote"
             name="titleNote"
@@ -107,7 +110,9 @@ export default function CreateNoteComponents() {
         </div>
         {/* Divisão para o conteúdo da anotação*/}
         <div className="flex flex-col gap-3 text-base">
-          <Label htmlFor="contentNote" className="text-lg">Conteúdo da nota</Label>
+          <Label htmlFor="contentNote" className="text-lg">
+            Conteúdo da nota
+          </Label>
           <Input
             id="contentNote"
             name="contentNote"
@@ -122,7 +127,9 @@ export default function CreateNoteComponents() {
         </div>
         {/*Divisão para descrição*/}
         <div className="flex flex-col gap-3 text-base">
-          <Label htmlFor="descriptionNote" className="text-lg">Descrição da nota</Label>
+          <Label htmlFor="descriptionNote" className="text-lg">
+            Descrição da nota
+          </Label>
           <Input
             id="descriptionNote"
             name="descriptionNote"
@@ -159,8 +166,12 @@ export default function CreateNoteComponents() {
                     {...register(`Badge.${index}.nameBadge`)}
                     placeholder="Digite a tag da nota"
                   />
-                  <button onClick={() => removeTag(index)} type="button" className="bg-transparent p-0 m-0">
-                    <FaDeleteLeft className="text-2xl text-red-500  hover:text-red-800 transition-colors duration-300 ease-linear"/>
+                  <button
+                    onClick={() => removeTag(index)}
+                    type="button"
+                    className="bg-transparent p-0 m-0"
+                  >
+                    <FaDeleteLeft className="text-2xl text-red-500  hover:text-red-800 transition-colors duration-300 ease-linear" />
                   </button>
                 </div>
                 {errors.Badge?.[index]?.nameBadge && (

@@ -20,10 +20,10 @@ export default function useLocal() {
       const parsedNotes = JSON.parse(getLocalStorage);
       const noteWithId = {
         ...newNote,
-        id: Date.now()
-      }
-      // Inserir a nova nota no array 
-      parsedNotes.push(noteWithId)
+        id: Date.now(),
+      };
+      // Inserir a nova nota no array
+      parsedNotes.push(noteWithId);
       localStorage.setItem("notes", JSON.stringify(parsedNotes));
       return true; // Retorna true para indicar sucesso
     } else {
@@ -31,6 +31,26 @@ export default function useLocal() {
     }
   };
 
+  const removeNoteAtLocalStorage = (idNote) => {
+    // Remover a nota do array
+    const getLocalStorage = localStorage.getItem("notes");
+    if (getLocalStorage) {
+      const parsedNotes = JSON.parse(getLocalStorage);
+      // Remover a nota do array
+      const objectNoteWIthoutNote = parsedNotes.filter(
+        (note) => note.id !== idNote
+      );
+      const saveNewObject = localStorage.setItem(
+        "notes",
+        JSON.stringify(objectNoteWIthoutNote)
+      );
+      if (saveNewObject) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  };
   return {
     verifyNotesAtLocalStorage,
     saveNewNoteAtLocalStorage,

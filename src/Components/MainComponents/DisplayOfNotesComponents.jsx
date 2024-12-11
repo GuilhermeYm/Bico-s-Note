@@ -3,11 +3,14 @@
 import { useEffect, useState } from "react";
 import useLocal from "@/Hook/useLocal";
 import { Badge } from "@/Components/ui/badge";
+import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 export default function DisplayOfNotesComponents({ filteredNotes }) {
   const [notes, setNotes] = useState([]);
   const [error, setError] = useState(false);
   const { verifyNotesAtLocalStorage } = useLocal();
+  const router = useRouter();
 
   useEffect(() => {
     try {
@@ -22,7 +25,7 @@ export default function DisplayOfNotesComponents({ filteredNotes }) {
     }
   }, []);
 
-  const notesToDisplay = filteredNotes || notes; 
+  const notesToDisplay = filteredNotes || notes;
 
   if (error) {
     return (
@@ -36,12 +39,13 @@ export default function DisplayOfNotesComponents({ filteredNotes }) {
         <section
           key={note.id || note.title}
           className="bg-backgroundAside w-noteExpo rounded-md px-3 py-2 mx-auto my-3 gap-2 cursor-pointer hover:scale-125 hover:my-8 hover:mb-8 transition-transform duration-300 ease-in-out"
+          onClick={() => router.push(`/Pages/SeeNote/${note.id}/`)}
         >
           <div className="mb-1">
             <h2 className="font-bold text-base">{note.title}</h2>
           </div>
           <div className="mb-2">
-            <p className="text-sm">{note.content}</p>
+            <p className="text-sm">{note.description}</p>
           </div>
           <div className="flex gap-1 items-center">
             <span className="text-xs text-center flex items-center font-bold">
